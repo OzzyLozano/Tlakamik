@@ -1,5 +1,31 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+// comandos git & react native
+// crear proyecto en react native
+npx react-native init <nombre>
+
+// ir al proyecto y ejecutarlo en emulador android o dispositivo
+cd "C:\ruta\al\proyecto"
+npx react-native run-android || npm run android
+
+// iniciar repositorio en git es
+git init // que no es necesario para iniciar el proyecto ya que al crear el proyecto en react se inicia un repositorio
+
+// iniciar sesion en git desde la terminal
+git config --global user.email "<correo en github>@ejemplo.com"
+git config --global user.name "<usuario en github>"
+
+// añadir 
+
+// hacer un commit
+git commit -m "<mensaje>"
+
+// dirigirte a la rama (branch) main
+git branch -M main
+
+// añadir al repositorio el commit hecho anteriormente
+git push -u origin main
+
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
