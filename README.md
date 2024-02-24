@@ -4,6 +4,12 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 // crear proyecto en react native
 npx react-native init <nombre>
 
+// instalar dependencias de react
+npm install react-native-maps
+npm install --save-dev @types/react-native-maps
+npm install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs @react-navigation/stack
+
 // ir al proyecto y ejecutarlo en emulador android o dispositivo
 cd "C:\ruta\al\proyecto"
 npx react-native run-android || npm run android
@@ -15,7 +21,8 @@ git init // que no es necesario para iniciar el proyecto ya que al crear el proy
 git config --global user.email "<correo en github>@ejemplo.com"
 git config --global user.name "<usuario en github>"
 
-// añadir 
+// añadir cambios en todos los archivos a git para despues hacer el commit
+git add .
 
 // hacer un commit
 git commit -m "<mensaje>"
