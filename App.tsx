@@ -1,79 +1,32 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import { Colors, } from 'react-native/Libraries/NewAppScreen';
-
 import Tabs from "./src/tabs/Tabs.tsx";
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { Text, useColorScheme } from 'react-native';
+import Location from "./src/Permissions/Location.tsx";
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const DarkTheme = {
+  dark: true,
+  colors: {
+    primary: 'rgb(197, 123, 237)',
+    background: 'rgb(60, 60, 60)',
+    card: 'rgb(45, 45, 45)',
+    text: 'rgb(255, 255, 255)',
+    border: 'rgb(0, 0, 0)',
+    notification: 'rgb(255, 69, 58)',
+  },
+};
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
+const App = (): React.JSX.Element => {
+  const permiso = <Location /> ? 'concebido' : 'rechazado'
 
   return (
     <>
-      <Tabs />
+      <NavigationContainer theme={useColorScheme() === 'dark' ? DarkTheme : DefaultTheme}>
+        <Text>{permiso}</Text>
+        <Tabs />
+      </NavigationContainer>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

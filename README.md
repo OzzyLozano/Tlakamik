@@ -5,10 +5,20 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 npx react-native init <nombre>
 
 // instalar dependencias de react
-npm install react-native-maps
-npm install --save-dev @types/react-native-maps
-npm install react-native-screens react-native-safe-area-context
-npm install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs @react-navigation/stack
+npm install @react-native-community/geolocation@3.1.0
+npm install @react-navigation/bottom-tabs@6.5.14
+npm install @react-navigation/native@6.1.12
+npm install @react-navigation/native-stack@6.9.20
+npm install @react-navigation/stack@6.3.23
+npm install react@18.2.0
+npm install react-native@0.73.4
+npm install react-native-appearance@0.3.4
+npm install react-native-geolocation-service@5.3.1
+npm install react-native-maps@1.10.3
+npm install react-native-safe-area-context@4.9.0
+npm install react-native-screens@3.29.0
+npm install react-navigation-stack@2.10.4
+
 
 // ir al proyecto y ejecutarlo en emulador android o dispositivo
 cd "C:\ruta\al\proyecto"

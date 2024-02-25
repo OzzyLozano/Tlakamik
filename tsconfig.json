@@ -1,6 +1,8 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist",
     "target": "esnext",
     "module": "esnext",
     "jsx": "react-native",
