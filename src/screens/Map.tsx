@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
+import MapView, { Marker, Region } from 'react-native-maps';
 
 const Map = (): React.JSX.Element => {
   const [location, setLocation] = useState({
@@ -27,11 +27,10 @@ const Map = (): React.JSX.Element => {
   }
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <MapView
-        provider={PROVIDER_GOOGLE}
         initialRegion={initRegion}
-        style={StyleSheet.absoluteFill}
+        style={StyleSheet.absoluteFillObject}
         showsUserLocation={true}
         followsUserLocation={true}
         onRegionChange={handleRegionChange}
@@ -46,5 +45,13 @@ const Map = (): React.JSX.Element => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+});
 
 export default Map

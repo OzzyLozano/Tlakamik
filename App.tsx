@@ -1,7 +1,7 @@
 import React from 'react';
 import Tabs from "./src/tabs/Tabs.tsx";
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
-import { Text, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 import Location from "./src/Permissions/Location.tsx";
 
 const DarkTheme = {
@@ -21,6 +21,7 @@ const App = (): React.JSX.Element => {
   return (
     <>
       <NavigationContainer theme={useColorScheme() === 'dark' ? DarkTheme : DefaultTheme}>
+    <Location />
         <Tabs />
       </NavigationContainer>
     </>

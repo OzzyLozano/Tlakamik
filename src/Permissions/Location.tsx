@@ -22,11 +22,11 @@ const Location = () => {
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           console.log('Permiso concedido');
           // Ahora puedes utilizar Geolocation para obtener la ubicación
-          Geolocation.getCurrentPosition(
-            (position) => setLocation(position.coords),
-            (error) => console.log(error),
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-          );
+          // Geolocation.getCurrentPosition(
+          //   (position) => setLocation(position.coords),
+          //   (error) => console.log(error),
+          //   { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+          // );
         } else {
           console.log('Permiso denegado');
         }
