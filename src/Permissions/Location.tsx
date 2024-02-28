@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, PermissionsAndroid } from 'react-native';
+import { useEffect, useState } from 'react';
+import { PermissionsAndroid } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';  // Asegúrate de tener instalada esta biblioteca
 
 const Location = () => {

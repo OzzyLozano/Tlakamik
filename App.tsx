@@ -17,12 +17,10 @@ const DarkTheme = {
 };
 
 const App = (): React.JSX.Element => {
-  const permiso = <Location /> ? 'concebido' : 'rechazado'
 
   return (
     <>
       <NavigationContainer theme={useColorScheme() === 'dark' ? DarkTheme : DefaultTheme}>
-        <Text>{permiso}</Text>
         <Tabs />
       </NavigationContainer>
     </>
