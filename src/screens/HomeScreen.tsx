@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Button, ScrollView, StyleSheet, View } from 'react-native';
-import Map from './Map.tsx'
+import Map from './Map/Map.tsx'
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from './Routes/Types.tsx';
+import { RootStackParamList } from './types/Types.tsx';
 
 const HomeScreen= (): React.JSX.Element => {
   const HomeStack = createNativeStackNavigator();

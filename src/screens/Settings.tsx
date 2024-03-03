@@ -1,31 +1,24 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 const Settings= () => {
-  const SettingsStack = createNativeStackNavigator();
 
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name='Settings' component={ NormalSettings } />
-      <SettingsStack.Screen name='AdvancedSettings' component={ AdvancedSettings } />
-    </SettingsStack.Navigator>
-  )
-}
-
-const NormalSettings = () => {
-  return (
-    <View>
-      <Text style={{textAlign:'center'}}>Ajustes</Text>
+    <View style={styles.contenedor}>
+      <Text>Ajustes</Text>
     </View>
   )
 }
 
-const AdvancedSettings = () => {
-  return (
-    <View>
-      <Text style={{textAlign:'center'}}>Ajustes Avanzados</Text>
-    </View>
-  )
-}
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1, 
+    marginTop: 8, 
+    alignItems: 'center'
+  },
+  vistaRuta: {
+    width: '90%', 
+    marginBottom: 8
+  }
+})
 
 export default Settings

@@ -1,31 +1,50 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import Tabs from "./src/tabs/Tabs.tsx";
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
-import Location from "./src/Permissions/Location.tsx";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Home from './src/screens/Home.tsx';
+import Settings from './src/screens/Settings.tsx';
+import themes from './src/styles/themes.json'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const DarkTheme = {
-  dark: true,
-  colors: {
-    primary: 'rgb(197, 123, 237)',
-    background: 'rgb(60, 60, 60)',
-    card: 'rgb(45, 45, 45)',
-    text: 'rgb(255, 255, 255)',
-    border: 'rgb(0, 0, 0)',
-    notification: 'rgb(255, 69, 58)',
-  },
-};
-
-const App = (): React.JSX.Element => {
+const StackNav = (): React.JSX.Element => {
+  const Stack = createNativeStackNavigator()
 
   return (
+    <Stack.Navigator>
+      <Stack.Screen name='Home' component={Home} />
+    </Stack.Navigator>
+  )
+}
+
+const App = (): React.JSX.Element => {
+  const Drawer = createDrawerNavigator()
+  return (
     <>
-      <NavigationContainer theme={useColorScheme() === 'dark' ? DarkTheme : DefaultTheme}>
-    <Location />
-        <Tabs />
+      <NavigationContainer theme={useColorScheme() === 'dark' ? DarkTheme : LightTheme}>
+        <Drawer.Navigator 
+        initialRouteName='Home' 
+        screenOptions={{
+          drawerActiveBackgroundColor:'#FAF9F6', 
+          drawerInactiveBackgroundColor:'#36454F'
+        }}>
+          <Drawer.Screen name='Home' component={Home} />
+          <Drawer.Screen name='¿Como llegar?' component={Home} />
+          <Drawer.Screen name='Ajustes' component={Settings} />
+        </Drawer.Navigator>
       </NavigationContainer>
     </>
   );
 }
+
+const DarkTheme = {
+  dark: true,
+  colors: themes.dark,
+};
+const LightTheme = {
+  dark: false,
+  colors: themes.light,
+};
 
 export default App;

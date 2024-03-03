@@ -1,0 +1,18 @@
+{
+  "dark": {
+    "primary": "rgb(100, 100, 100)",
+    "background": "rgb(34, 34, 34)",
+    "card": "rgb(40, 40, 43)",
+    "text": "rgb(255, 255, 255)",
+    "border": "rgb(0, 0, 0)",
+    "notification": "rgb(255, 69, 58)"
+  },
+  "light": {
+    "primary": "rgb(0, 122, 255)",
+    "background": "rgb(250, 249, 246)",
+    "card": "rgb(255, 255, 255)",
+    "text": "rgb(0, 0, 0)",
+    "border": "rgb(216, 216, 216)",
+    "notification": "rgb(255, 69, 58)"
+  }
+}

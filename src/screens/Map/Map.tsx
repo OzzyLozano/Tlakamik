@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import MapView, { Marker, Region } from 'react-native-maps';
+import { StyleSheet, View, useColorScheme } from 'react-native';
+import MapView, { Region } from 'react-native-maps';
+import map_styles from '../../styles/map_styles.json'
 
 const Map = (): React.JSX.Element => {
   const [location, setLocation] = useState({
@@ -25,23 +26,25 @@ const Map = (): React.JSX.Element => {
       longitude: region.longitude
     })
   }
+  const colorScheme = useColorScheme();
+
+  // Establecer estilos del mapa según el modo claro/oscuro
+  const mapStyle = colorScheme === 'dark' ? map_styles.darkMapStyle : map_styles.retroMapStyle;
 
   return (
-    <View style={styles.container}>
-      <MapView
-        initialRegion={initRegion}
-        style={StyleSheet.absoluteFillObject}
-        showsUserLocation={true}
-        followsUserLocation={true}
-        onRegionChange={handleRegionChange}
-        onRegionChangeComplete={handleRegionChangeComplete}
-      >
-        <Marker
-          coordinate={{ latitude: 25.87972, longitude: -97.50417 }}
-          title="H. Matamoros"
-          description="Marker Description"
-        />
-      </MapView>
+    <View style={{flex:1}}>
+      <View style={styles.container}>
+        <MapView
+          initialRegion={initRegion}
+          style={StyleSheet.absoluteFillObject}
+          showsUserLocation={true}
+          followsUserLocation={true}
+          onRegionChange={handleRegionChange}
+          onRegionChangeComplete={handleRegionChangeComplete}
+          customMapStyle={mapStyle}
+        >
+        </MapView>
+      </View>
     </View>
   )
 }
