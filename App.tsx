@@ -29,7 +29,7 @@ const App = (): React.JSX.Element => {
           drawerActiveBackgroundColor:'#FAF9F6', 
           drawerInactiveBackgroundColor:'#36454F'
         }}>
-          <Drawer.Screen name='Home' component={Home} />
+          <Drawer.Screen name='Tlakamik' component={Home} />
           <Drawer.Screen name='¿Como llegar?' component={Home} />
           <Drawer.Screen name='Ajustes' component={Settings} />
         </Drawer.Navigator>
