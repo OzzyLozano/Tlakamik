@@ -1,6 +1,6 @@
 {
   "dark": {
-    "primary": "rgb(100, 100, 100)",
+    "primary": "rgb(27, 18, 18)",
     "background": "rgb(34, 34, 34)",
     "card": "rgb(40, 40, 43)",
     "text": "rgb(255, 255, 255)",
@@ -8,11 +8,19 @@
     "notification": "rgb(255, 69, 58)"
   },
   "light": {
-    "primary": "rgb(0, 122, 255)",
-    "background": "rgb(250, 249, 246)",
-    "card": "rgb(255, 255, 255)",
+    "primary": "rgb(95, 133, 117)",
+    "background": "rgb(237, 234, 222)",
+    "card": "rgb(255, 245, 238)",
     "text": "rgb(0, 0, 0)",
     "border": "rgb(216, 216, 216)",
     "notification": "rgb(255, 69, 58)"
+  },
+  "active": {
+    "primary": "",
+    "background": "",
+    "card": "",
+    "text": "",
+    "border": "",
+    "notification": ""
   }
 }

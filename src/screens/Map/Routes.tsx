@@ -1,18 +1,23 @@
 import { useState } from 'react';
 import { StyleSheet, View, useColorScheme } from 'react-native';
-import MapView, { Region } from 'react-native-maps';
+import MapView, { Marker, Polyline, Region } from 'react-native-maps';
 import map_styles from '../../styles/map_styles.json'
+import routes from '../Map/Routes/routes.json'
 
 const Map = (): React.JSX.Element => {
+
+  const origin = { latitude: 25.87972, longitude: -97.50417 } // Coordenadas de origen
+  const destination = { latitude: 25.843449, longitude: -97.453398 } // Coordenadas de destino
+
   const [location, setLocation] = useState({
     latitude: 25.87972,
     longitude: -97.50417
   })
   const initRegion = {
-    latitude: location.latitude,
-    longitude: location.longitude,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitude: (origin.latitude + destination.latitude) / 2,
+    longitude: (origin.longitude + destination.longitude) / 2,
+    latitudeDelta: Math.abs(origin.latitude - destination.latitude) * 1.5,
+    longitudeDelta: Math.abs(origin.longitude - destination.longitude) * 1.5,
   }
   const handleRegionChange = (region:Region) => {
     setLocation({
@@ -30,6 +35,9 @@ const Map = (): React.JSX.Element => {
   // Establecer estilos del mapa según el modo claro/oscuro
   const mapStyle = useColorScheme() === 'dark' ? map_styles.aubergine : map_styles.retroMapStyle;
 
+  // Definir puntos intermedios para la ruta personalizada
+  const customRoutePoints = routes.prueba
+
   return (
     <View style={{flex:1}}>
       <View style={styles.container}>
@@ -42,6 +50,10 @@ const Map = (): React.JSX.Element => {
           onRegionChangeComplete={handleRegionChangeComplete}
           customMapStyle={mapStyle}
         >
+          <Marker coordinate={origin} title="Origen" />
+          <Marker coordinate={destination} title="Destino" />
+          
+          <Polyline coordinates={[...customRoutePoints]} strokeWidth={3} strokeColor="#0096FF" />
         </MapView>
       </View>
     </View>

@@ -1,7 +1,7 @@
 import { View } from 'react-native';
-import Map from './Map/Map.tsx';
+import Map from './Map/Routes.tsx';
 
-const Home = (): React.JSX.Element => {
+const Routes = (): React.JSX.Element => {
 
   return (
     <View style={{flex:1}}>
@@ -10,4 +10,4 @@ const Home = (): React.JSX.Element => {
   )
 }
 
-export default Home
+export default Routes
