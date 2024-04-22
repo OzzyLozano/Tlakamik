@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, View, useColorScheme } from 'react-native';
 import MapView, { Marker, Polyline, Region } from 'react-native-maps';
 import map_styles from '../../styles/map_styles.json'
@@ -37,7 +37,7 @@ const Map = (): React.JSX.Element => {
   const mapStyle = useColorScheme() === 'dark' ? map_styles.aubergine : map_styles.retroMapStyle;
 
   // Definir puntos intermedios para la ruta personalizada
-  const route = routes.prueba.info
+  const route = (routes.prueba.info)
 
   return (
     <View style={{flex:1}}>
@@ -55,7 +55,7 @@ const Map = (): React.JSX.Element => {
           <Marker coordinate={destination} title="Fin" />
           {route.show && <Polyline coordinates={[...route.route]} strokeWidth={3} strokeColor={route.color} />}
         </MapView>
-        <BottomSheet />
+        <BottomSheet route={route} />
       </View>
     </View>
   )

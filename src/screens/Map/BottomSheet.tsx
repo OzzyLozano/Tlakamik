@@ -1,12 +1,25 @@
-import { Dimensions, StyleSheet, useColorScheme } from 'react-native';
+import { StyleSheet, useColorScheme } from 'react-native';
 import themes from './../../styles/themes.json'
 import { Gesture, GestureDetector, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Routes from './Routes/routes.json'
 import { useState } from 'react';
 
-const BottomSheet = (): React.JSX.Element => {
+type Props = {
+  route: {
+    nombre: string;
+    color: string;
+    horario: string;
+    bidireccional: boolean;
+    show: boolean;
+    route: {
+        latitude: number;
+        longitude: number;
+    }[];
+  }
+}
+
+const BottomSheet = ({route}: Props): React.JSX.Element => {
   const theme = useColorScheme() === 'dark' ? themes.dark : themes.light
   const insets = useSafeAreaInsets()
   const translateY = useSharedValue(0)
@@ -30,8 +43,6 @@ const BottomSheet = (): React.JSX.Element => {
       transform: [{translateY: translateY.value}]
     }
   })
-
-  const route = Routes.prueba.info
 
   return (
     <GestureDetector gesture={gesture}>
