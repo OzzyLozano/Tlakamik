@@ -117,10 +117,10 @@ const styles = StyleSheet.create({
   },
   line: {
     position: 'absolute',
-    top: 8,
-    width: 60,
+    top: 24,
+    width: '20%',
     height: 4,
-    borderRadius: 8
+    borderRadius: 4
   }
 })
 

@@ -1,7 +1,16 @@
 {
-  "prueba": [
-      { "latitude": 25.875290, "longitude": -97.4946703 },
-      { "latitude": 25.873295, "longitude": -97.4924917 },
-      { "latitude": 25.8433540, "longitude": -97.4518861 }
-  ]
+  "prueba": {
+    "info": {
+      "nombre": "nombreRuta",
+      "color": "#0096FF",
+      "horario": "7:00 - 20:00",
+      "bidireccional": true,
+      "show": true,
+      "route": [
+        { "latitude": 25.875290, "longitude": -97.4946703 },
+        { "latitude": 25.873295, "longitude": -97.4924917 },
+        { "latitude": 25.8433540, "longitude": -97.4518861 }
+      ]
+    }
+  }
 }
