@@ -6,27 +6,16 @@ import themes from '../styles/themes.json'
 type Props = {
   lowerPanelRef: React.RefObject<LowerPanelMethods>
   setting: string
-  theme: string | null | undefined
 }
 
-const Button = ({lowerPanelRef, setting, theme}: Props) => {
-  const backgroundColorAnimation = useAnimatedStyle(() => {
-    return {
-      backgroundColor: theme === 'dark' ? withTiming(themes.dark.card) : withTiming(themes.light.card)
-    }
-  })
-  const textColorAnimation = useAnimatedStyle(() => {
-    return {
-      color: theme === 'dark' ? withTiming(themes.dark.text) : withTiming(themes.light.text)
-    }
-  })
+const Button = ({lowerPanelRef, setting}: Props) => {
 
   return (
     <TouchableWithoutFeedback onPress={() => {
       lowerPanelRef.current?.open()
       }}>
-      <Animated.View style={[styles.contenedor, backgroundColorAnimation]}>
-        <Animated.Text style={[styles.texto, textColorAnimation]}>{setting}</Animated.Text>
+      <Animated.View style={[styles.contenedor]}>
+        <Animated.Text style={[styles.texto]}>{setting}</Animated.Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   )
