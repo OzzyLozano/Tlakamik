@@ -1,7 +1,6 @@
 import { StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import { LowerPanelMethods } from './LowerPanel';
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import themes from '../styles/themes.json'
+import Animated, {  } from 'react-native-reanimated';
 
 type Props = {
   lowerPanelRef: React.RefObject<LowerPanelMethods>

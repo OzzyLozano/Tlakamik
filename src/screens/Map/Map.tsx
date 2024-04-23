@@ -28,7 +28,7 @@ const Map = (): React.JSX.Element => {
   }
 
   // Establecer estilos del mapa según el modo claro/oscuro
-  const mapStyle = useColorScheme() === 'dark' ? map_styles.aubergine : map_styles.retroMapStyle;
+  const mapStyle = map_styles.retroMapStyle;
 
   return (
     <View style={{flex:1}}>

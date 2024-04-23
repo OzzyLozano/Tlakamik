@@ -1,10 +1,9 @@
-import { StyleSheet, useColorScheme} from 'react-native';
+import { StyleSheet} from 'react-native';
 import Button from '../components/Button.tsx'
-import LowerPanel, { LowerPanelMethods } from '../components/LowerPanel.tsx';
-import { useEffect, useRef, useState } from 'react';
+import { LowerPanelMethods } from '../components/LowerPanel.tsx';
+import { useRef } from 'react';
 import React from 'react';
 import Animated, {  } from 'react-native-reanimated';
-import ColorAnimations from '../styles/ColorAnimations.tsx';
 type Props = {
 }
 

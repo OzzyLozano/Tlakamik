@@ -1,11 +1,10 @@
 import { StyleSheet, useWindowDimensions } from 'react-native';
-import BackDrop from './BackDrop.tsx';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
-import ThemeSwitch from './ThemeSwitch.tsx';
-import Icon from './Icon.tsx';
+
+import BackDrop from './BackDrop.tsx';
 import themes from '../styles/themes.json'
 
 export interface LowerPanelMethods {
@@ -15,15 +14,11 @@ export interface LowerPanelMethods {
 type Props = {
   title: string
   content: string
-  themeSwitch: string
-  setThemeSwitch: React.Dispatch<React.SetStateAction<string>>
-  showThemeSwitch: boolean
   theme: string | null | undefined
-  setTheme: React.Dispatch<React.SetStateAction<string | null | undefined>>
 }
 
 const LowerPanel = forwardRef<LowerPanelMethods, Props>((props, ref) => {
-  const {title, content, themeSwitch, setThemeSwitch, showThemeSwitch, theme, setTheme} = props
+  const {title, content, theme} = props
   const insets = useSafeAreaInsets()
   const [panelHeight, setPanelHeight] = useState(1000)
   const {width} = useWindowDimensions()
@@ -87,10 +82,8 @@ const LowerPanel = forwardRef<LowerPanelMethods, Props>((props, ref) => {
           }}
           style={[styles.contenedor, {width: width*.92, bottom: insets.bottom}, animationStyle, backgroundColorAnimation]}>
           <Animated.View style={[styles.line, lineColorAnimation]} />
-          {showThemeSwitch && <Icon theme={theme} />}
           <Animated.Text style={[styles.titulo, textColorAnimation]}>{title}</Animated.Text>
           <Animated.Text style={[styles.text, textColorAnimation]}>{content}</Animated.Text>
-          {showThemeSwitch && <ThemeSwitch setThemeSwitch={setThemeSwitch} themeSwitch={themeSwitch} theme={theme} setTheme={setTheme} />}
         </Animated.View>
       </GestureDetector>
     </>
