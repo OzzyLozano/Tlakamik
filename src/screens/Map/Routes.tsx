@@ -5,6 +5,7 @@ import MapView, { Polyline, Region } from 'react-native-maps';
 import map_styles from '../../styles/map_styles.json'
 import routes from '../Map/Routes/routes.json'
 import BottomSheet from './BottomSheet'
+import { useSharedValue } from 'react-native-reanimated';
 
 const Map = (): React.JSX.Element => {
   const origin = { latitude: 25.88503, longitude: -97.55794 } // Coordenadas de origen
@@ -12,6 +13,7 @@ const Map = (): React.JSX.Element => {
   
   const [routeData, setRouteData] = useState(routes);
 
+  const [show, setShow] = useState(true)
   const toggleRouteVisibility = useCallback((routeName: string) => {
     Object.values(routeData).map(route => {
       const { info } = route

@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, { interpolate, useAnimatedStyle, useDerivedValue, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import React, { useState } from 'react';
 
@@ -12,7 +12,6 @@ type Props = {
 }
 
 const BottomSheet = ({toggleRouteVisibility}: Props): React.JSX.Element => {
-  const numberOfRoutes = Object.keys(routes).length === 1 ? 1:Object.keys(routes).length
   const theme = themes.light
   const insets = useSafeAreaInsets()
   const translateY = useSharedValue(0)
@@ -39,13 +38,28 @@ const BottomSheet = ({toggleRouteVisibility}: Props): React.JSX.Element => {
 
   const displayRoutes = () => {
     return Object.values(routes).map(route => {
+      const lineAnimation = useSharedValue(0)
+      const crossAnimation = useSharedValue({width: 12, height: 12})
+      const rotation = useDerivedValue(() => {
+        return interpolate(lineAnimation.value, [0, 12], [0, 12])
+      })
+      const animateCross = useAnimatedStyle(() => {
+        return {
+          width: withTiming(crossAnimation.value.width, {duration: 300}),
+          height: withTiming(crossAnimation.value.height, {duration: 300})
+        }
+      })
       const { info } = route
       if (!info) return null
       else return (
         <React.Fragment>
-          <TouchableWithoutFeedback style={[styles.route]} onPress={() => {
+          <TouchableWithoutFeedback key={info.nombre} style={[styles.route]} onPress={() => {
             toggleRouteVisibility(info.nombre)
+            crossAnimation.value = {width: info.show ? 12 : 0, height: info.show ? 12 : 0}
           }}>
+            <Animated.View style={[styles.show]}>
+              <Animated.View style={[styles.cross, animateCross]} />
+            </Animated.View>
             <Animated.View style={[styles.icon, {backgroundColor: info.color}]} />
             <Animated.Text style={[styles.name, {color: theme.text}]}>{info.nombre}</Animated.Text>
             <Animated.Text style={[styles.schedule, {color: theme.text}]}>{info.horario}</Animated.Text>
@@ -60,11 +74,15 @@ const BottomSheet = ({toggleRouteVisibility}: Props): React.JSX.Element => {
       <Animated.View onLayout={ ({nativeEvent}) => {
         const {height} = nativeEvent.layout
         if (height) setPanelHeight(height)
-      }
-      } style={[styles.bottomSheet, animationStyle, {backgroundColor: theme.background, bottom: insets.bottom}]}>
-        <Animated.View style={[styles.line, {backgroundColor: theme.text}]} />
-          <Animated.Text style={[styles.title, {color: theme.text}]}>Rutas Matamoros</Animated.Text>
+      }} 
+      style={
+        [styles.bottomSheet, animationStyle, {backgroundColor: theme.background, bottom: insets.bottom}]
+      }>
+        <View style={[styles.line, {backgroundColor: theme.text}]} />
+        <Animated.Text style={[styles.title, {color: theme.text}]}>Rutas Matamoros</Animated.Text>
+        <View>
           {displayRoutes()}
+        </View>
       </Animated.View>
     </GestureDetector>
   )
@@ -93,6 +111,21 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     fontWeight: '600',
     fontSize: 28
+  },
+  show: {
+    width: 18,
+    height: 18,
+    borderRadius: 7,
+    borderWidth: 4,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  cross: {
+    width: 12,
+    height: 12,
+    marginLeft: -1,
+    borderRadius: 7,
+    backgroundColor: '#000'
   },
   icon: {
     marginHorizontal: 12,
