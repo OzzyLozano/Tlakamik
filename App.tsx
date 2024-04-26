@@ -31,7 +31,7 @@ const App = (): React.JSX.Element => {
       <GestureHandlerRootView style={{flex : 1}}>
         <NavigationContainer >
             <Drawer.Navigator 
-            initialRouteName='Tlakamik' 
+            initialRouteName='Ver Rutas' 
             screenOptions={ drawerOption }>
               <Drawer.Screen name='Tlakamik' component={Home} options={headerOption} />
               <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />

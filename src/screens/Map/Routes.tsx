@@ -1,30 +1,23 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Polyline, Region } from 'react-native-maps';
 
 import map_styles from '../../styles/map_styles.json'
 import routes from '../Map/Routes/routes.json'
 import BottomSheet from './BottomSheet'
-import { useSharedValue } from 'react-native-reanimated';
 
 const Map = (): React.JSX.Element => {
   const origin = { latitude: 25.88503, longitude: -97.55794 } // Coordenadas de origen
   const destination = { latitude: 25.83374, longitude: -97.43091 } // Coordenadas de destino
-  
-  const [routeData, setRouteData] = useState(routes);
+  const [showRoutes, setShowRoutes] = useState(Object.values(routes).map(() => true))
 
-  const [show, setShow] = useState(true)
-  const toggleRouteVisibility = useCallback((routeName: string) => {
-    Object.values(routeData).map(route => {
-      const { info } = route
-      if (!info) return null
-      if (info.nombre == routeName) {
-        info.show = !info.show
-        setRouteData(routeData)
-      }
+  const toggleRouteVisibility = (index: number) => {
+    setShowRoutes(prevShowRoutes => {
+      const updatedShowRoutes = [...prevShowRoutes];
+      updatedShowRoutes[index] = !updatedShowRoutes[index];
+      return updatedShowRoutes;
     })
-  }, [])
-  
+  }
   const [location, setLocation] = useState({
     latitude: 25.87972,
     longitude: -97.50417
@@ -52,12 +45,12 @@ const Map = (): React.JSX.Element => {
   const mapStyle = map_styles.retroMapStyle;
 
   const renderRoutes = () => {
-    return Object.values(routeData).map(route => {
+    return Object.values(routes).map((route, index) => {
       const { info } = route
       if (!info) return null
       else return (
         <React.Fragment key={info.nombre}>
-          {info.show && (
+          {showRoutes[index] && (
             <Polyline 
             coordinates={[...info.route]}
             strokeWidth={4}
@@ -65,7 +58,7 @@ const Map = (): React.JSX.Element => {
           )}
         </React.Fragment>
       )
-    })
+    }, [])
   }
 
   return (
@@ -82,7 +75,7 @@ const Map = (): React.JSX.Element => {
         >
           {renderRoutes()}
         </MapView>
-        <BottomSheet toggleRouteVisibility={toggleRouteVisibility} />
+        <BottomSheet toggleRouteVisibility={toggleRouteVisibility} showRoutes={showRoutes} />
       </View>
     </View>
   )

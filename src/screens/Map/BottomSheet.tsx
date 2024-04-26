@@ -8,10 +8,11 @@ import themes from './../../styles/themes.json'
 import routes from '../Map/Routes/routes.json'
 
 type Props = {
-  toggleRouteVisibility: (routeName: string) => void
+  toggleRouteVisibility: (index: number) => void
+  showRoutes: boolean[]
 }
 
-const BottomSheet = ({toggleRouteVisibility}: Props): React.JSX.Element => {
+const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Element => {
   const theme = themes.light
   const insets = useSafeAreaInsets()
   const translateY = useSharedValue(0)
@@ -37,25 +38,24 @@ const BottomSheet = ({toggleRouteVisibility}: Props): React.JSX.Element => {
   })
 
   const displayRoutes = () => {
-    return Object.values(routes).map(route => {
-      const lineAnimation = useSharedValue(0)
-      const crossAnimation = useSharedValue({width: 12, height: 12})
-      const rotation = useDerivedValue(() => {
-        return interpolate(lineAnimation.value, [0, 12], [0, 12])
-      })
+    return Object.values(routes).map((route, index) => {
+      const crossAnimation = useSharedValue({width: 18, height: 18})
       const animateCross = useAnimatedStyle(() => {
         return {
           width: withTiming(crossAnimation.value.width, {duration: 300}),
           height: withTiming(crossAnimation.value.height, {duration: 300})
         }
       })
+      const handleRouteVisibility = (index: number) => {
+        crossAnimation.value = showRoutes[index] ? {width: 0, height: 0} : {width: 18, height: 18}
+        toggleRouteVisibility(index)
+      }
       const { info } = route
       if (!info) return null
       else return (
         <React.Fragment>
           <TouchableWithoutFeedback key={info.nombre} style={[styles.route]} onPress={() => {
-            toggleRouteVisibility(info.nombre)
-            crossAnimation.value = {width: info.show ? 12 : 0, height: info.show ? 12 : 0}
+            handleRouteVisibility(index)
           }}>
             <Animated.View style={[styles.show]}>
               <Animated.View style={[styles.cross, animateCross]} />
@@ -121,8 +121,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cross: {
-    width: 12,
-    height: 12,
     marginLeft: -1,
     borderRadius: 7,
     backgroundColor: '#000'
