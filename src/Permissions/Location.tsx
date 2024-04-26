@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { PermissionsAndroid } from 'react-native';
 
 const Location = () => {
+  const [permissionGranted, setPermissionGranted] = useState(false);
+
   useEffect(() => {
     const requestLocationPermission = async () => {
       try {
@@ -16,20 +18,22 @@ const Location = () => {
 
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           console.log('Permiso concedido');
+          
+          setPermissionGranted(true);
         } else {
           console.log('Permiso denegado');
+          setPermissionGranted(false);
         }
       } catch (err) {
         console.warn(err);
+        setPermissionGranted(false);
       }
     };
 
     requestLocationPermission();
   }, []);
 
-  return (
-    true
-  );
+  return permissionGranted;
 };
 
 export default Location;

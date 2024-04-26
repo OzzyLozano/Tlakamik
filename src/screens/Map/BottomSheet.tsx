@@ -39,28 +39,42 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
 
   const displayRoutes = () => {
     return Object.values(routes).map((route, index) => {
-      const crossAnimation = useSharedValue({width: 18, height: 18})
-      const animateCross = useAnimatedStyle(() => {
+      const crossAnimation = useSharedValue({width: 36, height: 36})
+      const rotate = useSharedValue(0)
+      const rotation = useDerivedValue(() => {
+        return interpolate(rotate.value, [0, 45], [0, 45])
+      })
+      const transformStyle = useAnimatedStyle(() => {
         return {
-          width: withTiming(crossAnimation.value.width, {duration: 300}),
-          height: withTiming(crossAnimation.value.height, {duration: 300})
+          transform: [{ rotate: `${(rotation.value)}deg` }]
         }
       })
+      const animateCross = useAnimatedStyle(() => {
+        return {
+          width: withTiming(crossAnimation.value.width, { duration: 500 }),
+          height: withTiming(crossAnimation.value.height, { duration: 500 }),
+          backgroundColor: withSpring(showRoutes[index] ? route.info.color : '#000', { duration: 300 })
+        }
+      })
+      const startCrossAnimation = () => {
+        const getRotation = () => { return showRoutes[index] ? 45: 0 }
+        rotate.value = withTiming(getRotation(), { duration: 500 })
+        crossAnimation.value = showRoutes[index] ? {width: 8, height: 42} : {width: 36, height: 36}
+      }
       const handleRouteVisibility = (index: number) => {
-        crossAnimation.value = showRoutes[index] ? {width: 0, height: 0} : {width: 18, height: 18}
+        startCrossAnimation()
         toggleRouteVisibility(index)
       }
       const { info } = route
       if (!info) return null
       else return (
-        <React.Fragment>
-          <TouchableWithoutFeedback key={info.nombre} style={[styles.route]} onPress={() => {
+        <React.Fragment key={info.nombre}>
+          <TouchableWithoutFeedback style={[styles.route]} onPress={() => {
             handleRouteVisibility(index)
           }}>
             <Animated.View style={[styles.show]}>
-              <Animated.View style={[styles.cross, animateCross]} />
+              <Animated.View style={[styles.cross, animateCross, transformStyle, {backgroundColor: info.color}]} />
             </Animated.View>
-            <Animated.View style={[styles.icon, {backgroundColor: info.color}]} />
             <Animated.Text style={[styles.name, {color: theme.text}]}>{info.nombre}</Animated.Text>
             <Animated.Text style={[styles.schedule, {color: theme.text}]}>{info.horario}</Animated.Text>
           </TouchableWithoutFeedback>
@@ -74,7 +88,7 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
       <Animated.View onLayout={ ({nativeEvent}) => {
         const {height} = nativeEvent.layout
         if (height) setPanelHeight(height)
-      }} 
+      }}
       style={
         [styles.bottomSheet, animationStyle, {backgroundColor: theme.background, bottom: insets.bottom}]
       }>
@@ -106,6 +120,8 @@ const styles = StyleSheet.create({
   route: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginVertical: 10
   },
   title: {
     paddingVertical: 8,
@@ -113,32 +129,24 @@ const styles = StyleSheet.create({
     fontSize: 28
   },
   show: {
-    width: 18,
-    height: 18,
-    borderRadius: 7,
+    marginRight: 12,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     borderWidth: 4,
     justifyContent: 'center',
     alignItems: 'center'
   },
   cross: {
-    marginLeft: -1,
-    borderRadius: 7,
-    backgroundColor: '#000'
-  },
-  icon: {
-    marginHorizontal: 12,
-    marginVertical: 3,
-    width: 36,
-    height: 36,
-    borderRadius: 18
+    borderRadius: 18,
   },
   name: {
-    marginHorizontal: 12,
+    marginRight: 6,
     fontWeight: '500',
     fontSize: 20
   },
   schedule: {
-    marginHorizontal: 12,
+    marginHorizontal: 8,
     fontSize: 20
   },
 })

@@ -1,7 +1,7 @@
 {
   "prueba1": {
     "info": {
-      "nombre": "pesera1",
+      "nombre": "Pesera1",
       "color": "#0096FF",
       "horario": "7:00 - 20:00",
       "bidireccional": true,
@@ -15,7 +15,7 @@
   },
   "prueba2": {
     "info": {
-      "nombre": "pesera2",
+      "nombre": "Pesera2",
       "color": "#880808",
       "horario": "7:00 - 20:00",
       "bidireccional": true,

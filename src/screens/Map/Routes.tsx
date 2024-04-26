@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Polyline, Region } from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation'
 
 import map_styles from '../../styles/map_styles.json'
 import routes from '../Map/Routes/routes.json'
 import BottomSheet from './BottomSheet'
 
-const Map = (): React.JSX.Element => {
-  const origin = { latitude: 25.88503, longitude: -97.55794 } // Coordenadas de origen
-  const destination = { latitude: 25.83374, longitude: -97.43091 } // Coordenadas de destino
+const Map = () => {
+  Geolocation.setRNConfiguration({
+      skipPermissionRequests: true,
+      authorizationLevel: 'auto',
+      enableBackgroundLocationUpdates: true,
+      locationProvider: 'auto'
+    }
+  )
+  Geolocation.getCurrentPosition(
+    position => {
+      setLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      })
+    },
+    error => {
+      console.log(error.code, error.message);
+    },
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+  );
+  
+
+  const origin = { latitude: 25.85476, longitude: -97.52567 } // Coordenadas de origen
+  const destination = { latitude: 25.84425, longitude: -97.47932 } // Coordenadas de destino
   const [showRoutes, setShowRoutes] = useState(Object.values(routes).map(() => true))
 
   const toggleRouteVisibility = (index: number) => {
