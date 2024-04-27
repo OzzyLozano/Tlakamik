@@ -5,10 +5,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import themes from './src/styles/themes.json'
 import { NavigationContainer } from '@react-navigation/native';
 
-import Home from './src/screens/Home.tsx';
-import Routes from './src/screens/Routes.tsx';
-import Settings from './src/screens/Settings.tsx';
-import Location from './src/permissions/Location.tsx';
+import Home from './src/screens/Home.tsx'
+import Routes from './src/screens/Routes.tsx'
+import Settings from './src/screens/Settings.tsx'
+import Location from './src/permissions/Location.tsx'
 
 const App = (): React.JSX.Element => {
 
@@ -31,7 +31,7 @@ const App = (): React.JSX.Element => {
       <GestureHandlerRootView style={{flex : 1}}>
         <NavigationContainer >
             <Drawer.Navigator 
-            initialRouteName='Ver Rutas' 
+            initialRouteName='Tlakamik' 
             screenOptions={ drawerOption }>
               <Drawer.Screen name='Tlakamik' component={Home} options={headerOption} />
               <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />

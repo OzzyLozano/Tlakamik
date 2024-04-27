@@ -2,7 +2,7 @@
   "prueba1": {
     "info": {
       "nombre": "Pesera1",
-      "color": "#0096FF",
+      "color": "#6495ED",
       "horario": "7:00 - 20:00",
       "bidireccional": true,
       "show": true,

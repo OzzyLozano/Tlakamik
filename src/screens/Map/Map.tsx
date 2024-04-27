@@ -1,34 +1,53 @@
-import { useState } from 'react';
-import { StyleSheet, View, useColorScheme } from 'react-native';
-import MapView, { Region } from 'react-native-maps';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import MapView from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
+
 import map_styles from '../../styles/map_styles.json'
 
-const Map = (): React.JSX.Element => {
-  const [location, setLocation] = useState({
-    latitude: 25.87972,
-    longitude: -97.50417
-  })
+type Props = {
+}
+
+const Map = ({}: Props): React.JSX.Element => {
+  const [loading, setLoading] = useState(true);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
+  useEffect(() => {
+    const getInitLocation = async () => {
+      try {
+        await Geolocation.getCurrentPosition(
+          position => {
+            setLatitude(position.coords.latitude)
+            setLongitude(position.coords.longitude)
+            setLoading(false)
+          },
+          error => {},
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        )
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+      }
+    }
+    getInitLocation()
+  }, [])
+  
+  if (loading) {
+    return (
+      <View style={[styles.container, styles.loadingContainer]}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    )
+  }
   const initRegion = {
-    latitude: location.latitude,
-    longitude: location.longitude,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  }
-  const handleRegionChange = (region:Region) => {
-    setLocation({
-      latitude: region.latitude,
-      longitude: region.longitude
-    })
-  }
-  const handleRegionChangeComplete = (region:Region) => {
-    setLocation({
-      latitude: region.latitude,
-      longitude: region.longitude
-    })
+    latitude: latitude,
+    longitude: longitude,
+    latitudeDelta: 0.008,
+    longitudeDelta: 0.008,
   }
 
   // Establecer estilos del mapa según el modo claro/oscuro
-  const mapStyle = map_styles.retroMapStyle;
+  const mapStyle = map_styles.retroMapStyle
 
   return (
     <View style={{flex:1}}>
@@ -38,8 +57,6 @@ const Map = (): React.JSX.Element => {
           style={StyleSheet.absoluteFillObject}
           showsUserLocation={true}
           followsUserLocation={true}
-          onRegionChange={handleRegionChange}
-          onRegionChangeComplete={handleRegionChangeComplete}
           customMapStyle={mapStyle}
         >
         </MapView>
@@ -50,8 +67,10 @@ const Map = (): React.JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
+    flex: 1,
+  },
+  loadingContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });

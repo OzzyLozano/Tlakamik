@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import MapView, { Polyline, Region } from 'react-native-maps';
-import Geolocation from '@react-native-community/geolocation'
 
 import map_styles from '../../styles/map_styles.json'
 import routes from '../Map/Routes/routes.json'
 import BottomSheet from './BottomSheet'
 
 const Map = () => {
-  Geolocation.setRNConfiguration({
-      skipPermissionRequests: true,
-      authorizationLevel: 'auto',
-      enableBackgroundLocationUpdates: true,
-      locationProvider: 'auto'
-    }
-  )
-  Geolocation.getCurrentPosition(
-    position => {
-      setLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      })
-    },
-    error => {
-      console.log(error.code, error.message);
-    },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-  );
-  
+  const [loading, setLoading] = useState(true);
+  // codigo para hecer una pantalla de carga:
+  // if (loading) {
+  //   return (
+  //     <View style={[styles.container, styles.loadingContainer]}>
+  //       <ActivityIndicator size="large" color="#0000ff" />
+  //     </View>
+  //   )
+  // }
 
   const origin = { latitude: 25.85476, longitude: -97.52567 } // Coordenadas de origen
   const destination = { latitude: 25.84425, longitude: -97.47932 } // Coordenadas de destino
@@ -40,27 +28,11 @@ const Map = () => {
       return updatedShowRoutes;
     })
   }
-  const [location, setLocation] = useState({
-    latitude: 25.87972,
-    longitude: -97.50417
-  })
   const initRegion = {
     latitude: (origin.latitude + destination.latitude) / 2,
     longitude: (origin.longitude + destination.longitude) / 2,
     latitudeDelta: Math.abs(origin.latitude - destination.latitude) * 1.5,
     longitudeDelta: Math.abs(origin.longitude - destination.longitude) * 1.5,
-  }
-  const handleRegionChange = (region:Region) => {
-    setLocation({
-      latitude: region.latitude,
-      longitude: region.longitude
-    })
-  }
-  const handleRegionChangeComplete = (region:Region) => {
-    setLocation({
-      latitude: region.latitude,
-      longitude: region.longitude
-    })
   }
 
   // Establecer estilo del mapa
@@ -91,8 +63,6 @@ const Map = () => {
           style={StyleSheet.absoluteFillObject}
           showsUserLocation={true}
           followsUserLocation={true}
-          onRegionChange={handleRegionChange}
-          onRegionChangeComplete={handleRegionChangeComplete}
           customMapStyle={mapStyle}
         >
           {renderRoutes()}
@@ -104,6 +74,10 @@ const Map = () => {
 }
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
