@@ -8,11 +8,11 @@
     "notification": "rgb(255, 69, 58)"
   },
   "light": {
-    "primary": "rgb(95, 133, 117)",
-    "background": "rgb(237, 234, 222)",
-    "card": "rgb(255, 245, 238)",
+    "primary": "#ffcd00",
+    "background": "#e6e6e6",
+    "card": "#f9f9f9",
     "text": "rgb(0, 0, 0)",
-    "border": "rgb(216, 216, 216)",
+    "border": "#a0a0a0",
     "notification": "rgb(255, 69, 58)"
   },
   "active": {

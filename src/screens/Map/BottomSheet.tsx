@@ -72,11 +72,11 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
           <TouchableWithoutFeedback style={[styles.route]} onPress={() => {
             handleRouteVisibility(index)
           }}>
+            <Animated.Text style={[styles.name, {color: theme.text}]}>{info.nombre}</Animated.Text>
             <Animated.View style={[styles.show]}>
               <Animated.View style={[styles.cross, animateCross, transformStyle, {backgroundColor: info.color}]} />
             </Animated.View>
-            <Animated.Text style={[styles.name, {color: theme.text}]}>{info.nombre}</Animated.Text>
-            <Animated.Text style={[styles.schedule, {color: theme.text}]}>{info.horario}</Animated.Text>
+            {/* <Animated.Text style={[styles.schedule, {color: theme.text}]}>{info.horario}</Animated.Text> */}
           </TouchableWithoutFeedback>
         </React.Fragment>
       )
@@ -90,10 +90,11 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
         if (height) setPanelHeight(height)
       }}
       style={
-        [styles.bottomSheet, animationStyle, {backgroundColor: theme.background, bottom: insets.bottom}]
+        [styles.bottomSheet, animationStyle, {backgroundColor: theme.primary, bottom: insets.bottom}]
       }>
         <View style={[styles.line, {backgroundColor: theme.text}]} />
         <Animated.Text style={[styles.title, {color: theme.text}]}>Rutas Matamoros</Animated.Text>
+        <View style={[styles.bottomLine, {backgroundColor: theme.text}]} />
         <View>
           {displayRoutes()}
         </View>
@@ -120,13 +121,23 @@ const styles = StyleSheet.create({
   route: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginVertical: 10
+    justifyContent: 'space-between',
+    width: '80%',
+    alignSelf: 'center',
+    marginVertical: 10,
+    marginHorizontal: 25,
   },
   title: {
     paddingVertical: 8,
     fontWeight: '600',
-    fontSize: 28
+    fontSize: 28,
+    textAlign: 'center',
+  },
+  bottomLine: {
+    width: '90%',
+    height: 2,
+    alignSelf: 'center',
+    borderRadius: 4
   },
   show: {
     marginRight: 12,

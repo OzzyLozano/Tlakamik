@@ -1,44 +1,14 @@
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';
-import Geolocation from '@react-native-community/geolocation';
 
 import map_styles from '../../styles/map_styles.json'
 
 type Props = {
+  latitude: number
+  longitude: number
 }
 
-const Map = ({}: Props): React.JSX.Element => {
-  const [loading, setLoading] = useState(true);
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
-  useEffect(() => {
-    const getInitLocation = async () => {
-      try {
-        await Geolocation.getCurrentPosition(
-          position => {
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-            setLoading(false)
-          },
-          error => {},
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        )
-      } catch (error) {
-        console.log(error)
-        setLoading(false)
-      }
-    }
-    getInitLocation()
-  }, [])
-  
-  if (loading) {
-    return (
-      <View style={[styles.container, styles.loadingContainer]}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    )
-  }
+const Map = ({latitude, longitude}: Props): React.JSX.Element => {
   const initRegion = {
     latitude: latitude,
     longitude: longitude,
@@ -46,8 +16,8 @@ const Map = ({}: Props): React.JSX.Element => {
     longitudeDelta: 0.008,
   }
 
-  // Establecer estilos del mapa según el modo claro/oscuro
-  const mapStyle = map_styles.retroMapStyle
+  // Establecer estilos del mapa
+  const mapStyle = map_styles.default
 
   return (
     <View style={{flex:1}}>

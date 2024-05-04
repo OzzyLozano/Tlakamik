@@ -1,11 +1,17 @@
 import { View } from 'react-native';
-import Map from './Map/Map.tsx';
 
-const Home = (): React.JSX.Element => {
+import Map from './Map/Map.tsx'
+
+type Props = {
+  latitude: number
+  longitude: number
+}
+
+const Home = ({latitude, longitude}: Props): React.JSX.Element => {
 
   return (
     <View style={{flex:1}}>
-      <Map />
+      <Map latitude={latitude} longitude={longitude} />
     </View>
   )
 }

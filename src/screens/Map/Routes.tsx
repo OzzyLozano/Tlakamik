@@ -7,18 +7,8 @@ import routes from '../Map/Routes/routes.json'
 import BottomSheet from './BottomSheet'
 
 const Map = () => {
-  const [loading, setLoading] = useState(true);
-  // codigo para hecer una pantalla de carga:
-  // if (loading) {
-  //   return (
-  //     <View style={[styles.container, styles.loadingContainer]}>
-  //       <ActivityIndicator size="large" color="#0000ff" />
-  //     </View>
-  //   )
-  // }
-
-  const origin = { latitude: 25.85476, longitude: -97.52567 } // Coordenadas de origen
-  const destination = { latitude: 25.84425, longitude: -97.47932 } // Coordenadas de destino
+  const coord1 = { latitude: 25.85476, longitude: -97.52567 } // Coordenadas de origen
+  const coord2 = { latitude: 25.84425, longitude: -97.47932 } // Coordenadas de destino
   const [showRoutes, setShowRoutes] = useState(Object.values(routes).map(() => true))
 
   const toggleRouteVisibility = (index: number) => {
@@ -29,14 +19,14 @@ const Map = () => {
     })
   }
   const initRegion = {
-    latitude: (origin.latitude + destination.latitude) / 2,
-    longitude: (origin.longitude + destination.longitude) / 2,
-    latitudeDelta: Math.abs(origin.latitude - destination.latitude) * 1.5,
-    longitudeDelta: Math.abs(origin.longitude - destination.longitude) * 1.5,
+    latitude: (coord1.latitude + coord2.latitude) / 2,
+    longitude: (coord1.longitude + coord2.longitude) / 2,
+    latitudeDelta: Math.abs(coord1.latitude - coord2.latitude) * 1.5,
+    longitudeDelta: Math.abs(coord1.longitude - coord2.longitude) * 1.5,
   }
 
   // Establecer estilo del mapa
-  const mapStyle = map_styles.retroMapStyle;
+  const mapStyle = map_styles.default;
 
   const renderRoutes = () => {
     return Object.values(routes).map((route, index) => {

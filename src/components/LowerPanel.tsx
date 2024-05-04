@@ -4,7 +4,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 
-import BackDrop from './BackDrop.tsx';
+import BackDrop from './BackDrop.tsx'
 import themes from '../styles/themes.json'
 
 export interface LowerPanelMethods {
