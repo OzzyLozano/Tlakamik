@@ -23,7 +23,23 @@ const App = (): React.JSX.Element => {
     let locationTimeout: NodeJS.Timeout
     const getInitLocation = async () => {
       try {
-        locationTimeout = setTimeout(() => {
+        locationTimeout = setTimeout(async () => {
+          await Geolocation.getCurrentPosition(
+            position => {
+              clearTimeout(locationTimeout)
+              setLatitude(position.coords.latitude)
+              setLongitude(position.coords.longitude)
+              setLoading(false)
+            },
+            error => {
+              clearTimeout(locationTimeout)
+              console.log(error)
+              setLatitude(defaultLatitude)
+              setLongitude(defaultLongitude)
+              setLoading(false)
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+          )
           setLatitude(defaultLatitude);
           setLongitude(defaultLongitude);
           setLoading(false);
