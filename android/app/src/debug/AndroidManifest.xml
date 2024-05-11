@@ -13,7 +13,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCwNn5RrHWYK7KsXIBj8WennBD7HBSK2xE" />
+            android:value="AIzaSyCXf6oBvxSVe1QmheS-qpou8INPAkfX9CY" />
 
         <service
             android:name="com.example.MyLocationService"

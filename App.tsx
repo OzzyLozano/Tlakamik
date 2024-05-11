@@ -15,51 +15,29 @@ import Help from './src/screens/Help.tsx'
 
 const App = (): React.JSX.Element => {
   const [loading, setLoading] = useState(true);
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
-  const [defaultLatitude, setDefaultLatitude] = useState(25.87972);
-  const [defaultLongitude, setDefaultLongitude] = useState(-97.50417);
+  const [latitude, setLatitude] = useState(25.87972);
+  const [longitude, setLongitude] = useState(-97.50417);
   useEffect(() => {
     let locationTimeout: NodeJS.Timeout
     const getInitLocation = async () => {
       try {
-        locationTimeout = setTimeout(async () => {
-          await Geolocation.getCurrentPosition(
+        locationTimeout = setTimeout(() => {
+          Geolocation.getCurrentPosition(
             position => {
-              clearTimeout(locationTimeout)
-              setLatitude(position.coords.latitude)
-              setLongitude(position.coords.longitude)
-              setLoading(false)
+              clearTimeout(locationTimeout);
+              setLatitude(position.coords.latitude);
+              setLongitude(position.coords.longitude);
+              setLoading(false);
             },
             error => {
-              clearTimeout(locationTimeout)
-              console.log(error)
-              setLatitude(defaultLatitude)
-              setLongitude(defaultLongitude)
-              setLoading(false)
+              clearTimeout(locationTimeout);
+              console.log(error);
+              setLoading(false);
             },
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
           )
-          setLatitude(defaultLatitude);
-          setLongitude(defaultLongitude);
           setLoading(false);
-        }, 5000)
-        await Geolocation.getCurrentPosition(
-          position => {
-            clearTimeout(locationTimeout)
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-            setLoading(false)
-          },
-          error => {
-            clearTimeout(locationTimeout)
-            console.log(error)
-            setLatitude(defaultLatitude)
-            setLongitude(defaultLongitude)
-            setLoading(false)
-          },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        )
+        }, 1000)
       } catch (error) {
         console.log(error)
         setLoading(false)
@@ -96,7 +74,7 @@ const App = (): React.JSX.Element => {
       <GestureHandlerRootView style={{flex : 1}}>
         <NavigationContainer >
             <Drawer.Navigator 
-            initialRouteName='Tlakamik' 
+            initialRouteName='Ver Rutas' 
             screenOptions={ drawerOption }>
               <Drawer.Screen name='Tlakamik' options={headerOption}>
                 {() => <Home latitude={latitude} longitude={longitude} />}

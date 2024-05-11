@@ -15,10 +15,13 @@ type Props = {
 const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Element => {
   const theme = themes.light
   const insets = useSafeAreaInsets()
-  const translateY = useSharedValue(0)
   const [panelHeight, setPanelHeight] = useState(1000)
   const OPEN = 0
   const CLOSE = Math.floor(panelHeight - 68)
+  const getClosingHeight = () => {
+    return Object.values(routes).length * 68
+  }
+  const translateY = useSharedValue(getClosingHeight())
   const gesture = Gesture.Pan().onUpdate((event) => {
     if (event.translationY < 0)
       translateY.value = withSpring(OPEN, {damping: 100, stiffness: 400})

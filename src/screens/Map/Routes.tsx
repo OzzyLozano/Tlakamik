@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import MapView, { Polyline, Region } from 'react-native-maps';
+import { StyleSheet, View } from 'react-native';
+import MapView, { Polyline } from 'react-native-maps';
 
 import map_styles from '../../styles/map_styles.json'
 import routes from '../Map/Routes/routes.json'
@@ -46,8 +46,7 @@ const Map = () => {
   }
 
   return (
-    <View style={{flex:1}}>
-      <View style={styles.container}>
+    <View style={styles.container}>
         <MapView
           initialRegion={initRegion}
           style={StyleSheet.absoluteFillObject}
@@ -58,7 +57,6 @@ const Map = () => {
           {renderRoutes()}
         </MapView>
         <BottomSheet toggleRouteVisibility={toggleRouteVisibility} showRoutes={showRoutes} />
-      </View>
     </View>
   )
 }
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

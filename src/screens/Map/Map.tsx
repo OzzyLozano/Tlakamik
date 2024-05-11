@@ -12,8 +12,8 @@ const Map = ({latitude, longitude}: Props): React.JSX.Element => {
   const initRegion = {
     latitude: latitude,
     longitude: longitude,
-    latitudeDelta: 0.008,
-    longitudeDelta: 0.008,
+    latitudeDelta: 0.02,
+    longitudeDelta: 0.02,
   }
 
   // Establecer estilos del mapa

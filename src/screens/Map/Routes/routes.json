@@ -147,5 +147,36 @@
         { "latitude": 25.8433540, "longitude": -97.4518861 }
       ]
     }
+  },
+  "tec2": {
+    "info": {
+      "nombre": "Tec - Esperanza xd",
+      "color": "#6495ED",
+      "horario": "7:00 - 20:00",
+      "bidireccional": true,
+      "show": true,
+      "route": [
+        { "latitude": 25.87657, "longitude": -97.51785 },
+        { "latitude": 25.87906, "longitude": -97.5064 },
+        { "latitude": 25.87735, "longitude": -97.50619 },
+        { "latitude": 25.87808, "longitude": -97.50254 },
+        { "latitude": 25.87991, "longitude": -97.50265 },
+        { "latitude": 25.8802, "longitude": -97.5014 },
+        { "latitude": 25.87975, "longitude": -97.5012 },
+        { "latitude": 25.87947, "longitude": -97.501 },
+        { "latitude": 25.87922, "longitude": -97.50073 },
+        { "latitude": 25.87876, "longitude": -97.50018 },
+        { "latitude": 25.87856, "longitude": -97.49995 },
+        { "latitude": 25.87821, "longitude": -97.49964 },
+        { "latitude": 25.87771, "longitude": -97.4995 },
+        { "latitude": 25.87759, "longitude": -97.49949 },
+        { "latitude": 25.87727, "longitude": -97.49952 },
+        { "latitude": 25.87665, "longitude": -97.49697 },
+        { "latitude": 25.87577, "longitude": -97.49539 },
+        { "latitude": 25.875290, "longitude": -97.4946703 },
+        { "latitude": 25.873295, "longitude": -97.4924917 },
+        { "latitude": 25.8433540, "longitude": -97.4518861 }
+      ]
+    }
   }
 }
