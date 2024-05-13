@@ -19,7 +19,7 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
   const OPEN = 0
   const CLOSE = Math.floor(panelHeight - 68)
   const getClosingHeight = () => {
-    return Object.values(routes).length * 68
+    return Object.values(routes).length * 64 + 20
   }
   const translateY = useSharedValue(getClosingHeight())
   const gesture = Gesture.Pan().onUpdate((event) => {
