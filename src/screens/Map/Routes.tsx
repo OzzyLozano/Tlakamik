@@ -36,7 +36,7 @@ const Map = () => {
         <React.Fragment key={info.nombre}>
           {showRoutes[index] && (
             <Polyline 
-            coordinates={[...info.route]}
+            coordinates={[...route.ruta]}
             strokeWidth={4}
             strokeColor={info.color} />
           )}
