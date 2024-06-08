@@ -44,7 +44,6 @@ const App = (): React.JSX.Element => {
       }
     }
     getInitLocation()
-    return () => clearTimeout(locationTimeout)
   }, [])
   
   if (loading) {
@@ -68,31 +67,34 @@ const App = (): React.JSX.Element => {
   }
   const Drawer = createDrawerNavigator()
 
-  if (<Location />) return (
-    <>
-    <SafeAreaProvider>
-      <GestureHandlerRootView style={{flex : 1}}>
-        <NavigationContainer >
-            <Drawer.Navigator 
-            initialRouteName='Ver Rutas' 
-            screenOptions={ drawerOption }>
-              <Drawer.Screen name='Tlakamik' options={headerOption}>
-                {() => <Home latitude={latitude} longitude={longitude} />}
-              </Drawer.Screen>
-              <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />
-              <Drawer.Screen name='Configuracion' component={Settings} options={headerOption} />
-              <Drawer.Screen name='Ayuda' component={Help} options={headerOption} />
-            </Drawer.Navigator>
-          </NavigationContainer>
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
-    </>
-  )
-  else return (
-    <>
-    
-    </>
-  )
+  try {
+    return (
+      <>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{flex : 1}}>
+          <NavigationContainer >
+              <Drawer.Navigator 
+              initialRouteName='Ver Rutas' 
+              screenOptions={ drawerOption }>
+                <Drawer.Screen name='Tlakamik' options={headerOption}>
+                  {() => <Home latitude={latitude} longitude={longitude} />}
+                </Drawer.Screen>
+                <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />
+                <Drawer.Screen name='Configuracion' component={Settings} options={headerOption} />
+                <Drawer.Screen name='Ayuda' component={Help} options={headerOption} />
+              </Drawer.Navigator>
+            </NavigationContainer>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
+      </>
+    )
+  } catch (error) {
+    return (
+      <>
+      
+      </>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
