@@ -18,10 +18,7 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
   const [panelHeight, setPanelHeight] = useState(1000)
   const OPEN = 0
   const CLOSE = Math.floor(panelHeight - 68)
-  const getClosingHeight = () => {
-    return Object.values(routes).length * 64 + 20
-  }
-  const translateY = useSharedValue(getClosingHeight())
+  const translateY = useSharedValue(0)
   const gesture = Gesture.Pan().onUpdate((event) => {
     if (event.translationY < 0)
       translateY.value = withSpring(OPEN, {damping: 100, stiffness: 400})
@@ -90,7 +87,10 @@ const BottomSheet = ({toggleRouteVisibility, showRoutes}: Props): React.JSX.Elem
     <GestureDetector gesture={gesture}>
       <Animated.View onLayout={ ({nativeEvent}) => {
         const {height} = nativeEvent.layout
-        if (height) setPanelHeight(height)
+        if (height) {
+          translateY.value = Math.floor(height - 68)
+          setPanelHeight(height)
+        }
       }}
       style={
         [styles.bottomSheet, animationStyle, {backgroundColor: theme.primary, bottom: insets.bottom}]
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '97%',
     paddingVertical: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 12,
     borderRadius: 40,
     marginBottom: 10
   },
@@ -125,10 +125,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: '80%',
+    width: '90%',
     alignSelf: 'center',
-    marginVertical: 10,
-    marginHorizontal: 25,
+    marginTop: 6,
   },
   title: {
     paddingVertical: 8,
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomLine: {
-    width: '90%',
+    width: '95%',
     height: 2,
     alignSelf: 'center',
     borderRadius: 4
@@ -155,12 +154,10 @@ const styles = StyleSheet.create({
     borderRadius: 18,
   },
   name: {
-    marginRight: 6,
     fontWeight: '500',
     fontSize: 20
   },
   schedule: {
-    marginHorizontal: 8,
     fontSize: 20
   },
 })

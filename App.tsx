@@ -10,7 +10,7 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import Home from './src/screens/Home.tsx'
 import Routes from './src/screens/Routes.tsx'
 import Settings from './src/screens/Settings.tsx'
-import Location from './src/permissions/Location.tsx'
+import Location from './src/Permissions/Location.tsx'
 import Help from './src/screens/Help.tsx'
 
 const App = (): React.JSX.Element => {
@@ -68,26 +68,34 @@ const App = (): React.JSX.Element => {
   const Drawer = createDrawerNavigator()
 
   try {
-    return (
-      <>
-      <SafeAreaProvider>
-        <GestureHandlerRootView style={{flex : 1}}>
-          <NavigationContainer >
-              <Drawer.Navigator 
-              initialRouteName='Ver Rutas' 
-              screenOptions={ drawerOption }>
-                <Drawer.Screen name='Tlakamik' options={headerOption}>
-                  {() => <Home latitude={latitude} longitude={longitude} />}
-                </Drawer.Screen>
-                <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />
-                <Drawer.Screen name='Configuracion' component={Settings} options={headerOption} />
-                <Drawer.Screen name='Ayuda' component={Help} options={headerOption} />
-              </Drawer.Navigator>
-            </NavigationContainer>
-        </GestureHandlerRootView>
-      </SafeAreaProvider>
-      </>
-    )
+    if (<Location />) {
+      return (
+        <>
+        <SafeAreaProvider>
+          <GestureHandlerRootView style={{flex : 1}}>
+            <NavigationContainer >
+                <Drawer.Navigator 
+                initialRouteName='VerRutas' 
+                screenOptions={ drawerOption }>
+                  <Drawer.Screen name='Tlakamik' options={headerOption}>
+                    {() => <Home latitude={latitude} longitude={longitude} />}
+                  </Drawer.Screen>
+                  <Drawer.Screen name='VerRutas' component={Routes} options={headerOption} />
+                  {/* <Drawer.Screen name='Configuracion' component={Settings} options={headerOption} /> */}
+                  <Drawer.Screen name='Ayuda' component={Help} options={headerOption} />
+                </Drawer.Navigator>
+              </NavigationContainer>
+          </GestureHandlerRootView>
+        </SafeAreaProvider>
+        </>
+      )
+    } else {
+      return (
+        <>
+        
+        </>
+      )
+    }
   } catch (error) {
     return (
       <>
