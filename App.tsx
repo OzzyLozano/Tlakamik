@@ -73,6 +73,7 @@ const App = (): React.JSX.Element => {
         <>
         <SafeAreaProvider>
           <GestureHandlerRootView style={{flex : 1}}>
+            <Location />
             <NavigationContainer >
                 <Drawer.Navigator 
                 initialRouteName='VerRutas' 
