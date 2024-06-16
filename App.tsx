@@ -76,12 +76,12 @@ const App = (): React.JSX.Element => {
             <Location />
             <NavigationContainer >
                 <Drawer.Navigator 
-                initialRouteName='VerRutas' 
+                initialRouteName='Ver Rutas' 
                 screenOptions={ drawerOption }>
                   <Drawer.Screen name='Tlakamik' options={headerOption}>
                     {() => <Home latitude={latitude} longitude={longitude} />}
                   </Drawer.Screen>
-                  <Drawer.Screen name='VerRutas' component={Routes} options={headerOption} />
+                  <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />
                   {/* <Drawer.Screen name='Configuracion' component={Settings} options={headerOption} /> */}
                   <Drawer.Screen name='Ayuda' component={Help} options={headerOption} />
                 </Drawer.Navigator>
