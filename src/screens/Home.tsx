@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import Map from './Map/Map.tsx'
+import Map from '../map/Map.tsx'
 import { SearchBar } from 'react-native-screens';
 
 type Props = {
@@ -12,21 +12,21 @@ const Home = ({latitude, longitude}: Props): React.JSX.Element => {
 
   return (
     <View style={{flex:1}}>
-      <Map latitude={latitude} longitude={longitude} />
-      {/* <View style={styles.searchBar}>
+      <View style={styles.searchBar}>
         <SearchBar 
           placeholder='Buscar una dirección'
         >
 
         </SearchBar>
-      </View> */}
+      </View>
+      <Map latitude={latitude} longitude={longitude} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   searchBar: {
-    height: 100
+    height: 80
   }
 })
 

@@ -12,7 +12,12 @@
   "dependencies": {
     "@react-native-community/geolocation": "^3.2.1",
     "@react-navigation/drawer": "^6.6.11",
-    "axios": "^1.6.8",
+    "@react-navigation/stack": "^6.4.1",
+    "axios": "^1.7.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2",
     "react": "^18.2.0",
     "react-native": "^0.73.4",
     "react-native-config": "^1.5.3",

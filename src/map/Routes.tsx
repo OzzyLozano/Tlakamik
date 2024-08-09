@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 
-import map_styles from '../../styles/map_styles.json'
-import routes from '../Map/Routes/routes.json'
+import map_styles from '../styles/map_styles.json'
+import routes from './routes/routes.json'
 import BottomSheet from './BottomSheet'
 
 const Map = () => {
-  const coord1 = { latitude: 25.85476, longitude: -97.52567 } // Coordenadas de origen
-  const coord2 = { latitude: 25.84425, longitude: -97.47932 } // Coordenadas de destino
   const [showRoutes, setShowRoutes] = useState(Object.values(routes).map(() => true))
 
   const toggleRouteVisibility = (index: number) => {
@@ -19,10 +17,10 @@ const Map = () => {
     })
   }
   const initRegion = {
-    latitude: (coord1.latitude + coord2.latitude) / 2,
-    longitude: (coord1.longitude + coord2.longitude) / 2,
-    latitudeDelta: Math.abs(coord1.latitude - coord2.latitude) * 1.5,
-    longitudeDelta: Math.abs(coord1.longitude - coord2.longitude) * 1.5,
+    latitude: 25.85028,
+    longitude: -97.50444,
+    latitudeDelta: .08,
+    longitudeDelta: .08,
   }
 
   // Establecer estilo del mapa

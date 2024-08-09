@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';
 
-import map_styles from '../../styles/map_styles.json'
+import map_styles from '../styles/map_styles.json'
 
 type Props = {
   latitude: number
@@ -20,8 +20,7 @@ const Map = ({latitude, longitude}: Props): React.JSX.Element => {
   const mapStyle = map_styles.default
 
   return (
-    <View style={{flex:1}}>
-      <View style={styles.container}>
+    <View style={[styles.container]}>
         <MapView
           initialRegion={initRegion}
           style={StyleSheet.absoluteFillObject}
@@ -30,7 +29,6 @@ const Map = ({latitude, longitude}: Props): React.JSX.Element => {
           customMapStyle={mapStyle}
         >
         </MapView>
-      </View>
     </View>
   )
 }
@@ -38,10 +36,6 @@ const Map = ({latitude, longitude}: Props): React.JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  loadingContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 

@@ -12,6 +12,10 @@ import Routes from './src/screens/Routes.tsx'
 import Settings from './src/screens/Settings.tsx'
 import Location from './src/Permissions/Location.tsx'
 import Help from './src/screens/Help.tsx'
+import VerRutas from './src/screens/VerRutas.tsx';
+import { createStackNavigator } from '@react-navigation/stack';
+import Ruta from './src/screens/Ruta.tsx';
+import prueba from './src/screens/prueba.tsx';
 
 const App = (): React.JSX.Element => {
   const [loading, setLoading] = useState(true);
@@ -66,41 +70,47 @@ const App = (): React.JSX.Element => {
     headerTintColor: themes.light.text
   }
   const Drawer = createDrawerNavigator()
+  const Stack = createStackNavigator()
+  
+  const VerRutasStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="VerRutas" component={VerRutas} />
+      <Stack.Screen name="Ruta" component={Ruta} />
+    </Stack.Navigator>
+  );
 
   try {
-    if (<Location />) {
-      return (
-        <>
-        <SafeAreaProvider>
-          <GestureHandlerRootView style={{flex : 1}}>
-            <Location />
-            <NavigationContainer >
-                <Drawer.Navigator 
-                initialRouteName='Ver Rutas' 
-                screenOptions={ drawerOption }>
-                  <Drawer.Screen name='Tlakamik' options={headerOption}>
-                    {() => <Home latitude={latitude} longitude={longitude} />}
-                  </Drawer.Screen>
-                  <Drawer.Screen name='Ver Rutas' component={Routes} options={headerOption} />
-                  {/* <Drawer.Screen name='Configuracion' component={Settings} options={headerOption} /> */}
-                  <Drawer.Screen name='Ayuda' component={Help} options={headerOption} />
-                </Drawer.Navigator>
-              </NavigationContainer>
-          </GestureHandlerRootView>
-        </SafeAreaProvider>
-        </>
-      )
-    } else {
-      return (
-        <>
-        
-        </>
-      )
-    }
+    <Location />
+    return (
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{flex : 1}}>
+          <Location />
+          <NavigationContainer >
+              <Drawer.Navigator 
+              initialRouteName='Tlakamik' 
+              screenOptions={ drawerOption }>
+                <Drawer.Screen name='Tlakamik' options={headerOption}>
+                  {() => <Routes />}
+                </Drawer.Screen>
+                <Drawer.Screen name='Cómo llegar' options={headerOption}>
+                  {() => <Home latitude={latitude} longitude={longitude} />}
+                </Drawer.Screen>
+                <Drawer.Screen name='Ver Rutas' options={headerOption}>
+                  {() => <VerRutasStack />}
+                </Drawer.Screen>
+                <Drawer.Screen name='Configuracion' component={Settings} options={headerOption}>
+                </Drawer.Screen>
+                <Drawer.Screen name='Ayuda' component={Help} options={headerOption}>
+                </Drawer.Screen>
+                {/* <Drawer.Screen name='prueba' component={prueba} options={headerOption} /> */}
+              </Drawer.Navigator>
+            </NavigationContainer>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
+    )
   } catch (error) {
     return (
       <>
-      
       </>
     )
   }

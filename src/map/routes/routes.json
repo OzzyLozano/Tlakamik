@@ -430,7 +430,7 @@
       "nombre": "Tec - Esperanza",
       "color": "#6495ED",
       "horario": "7:00 - 20:00",
-      "bidireccional": true,
+      "bidireccional": false,
       "show": true
     },
     "ruta": [
@@ -570,7 +570,7 @@
       "nombre": "Pereño",
       "color": "#0000FF",
       "horario": "7:00 - 20:00",
-      "bidireccional": true,
+      "bidireccional": false,
       "show": true
     },
     "ruta": [

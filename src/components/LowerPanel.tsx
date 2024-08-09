@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     paddingVertical: 40,
-    borderRadius: 35
+    borderRadius: 35,
+    margin: 10
   },
   titulo: {
     fontSize: 28,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: '500',
-    marginVertical: 20
+    marginTop: 20
   },
   line: {
     position: 'absolute',

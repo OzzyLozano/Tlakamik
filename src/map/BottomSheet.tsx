@@ -4,8 +4,8 @@ import Animated, { interpolate, useAnimatedStyle, useDerivedValue, useSharedValu
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import React, { useState } from 'react';
 
-import themes from './../../styles/themes.json'
-import routes from '../Map/Routes/routes.json'
+import themes from './../styles/themes.json'
+import routes from './routes/routes.json'
 
 type Props = {
   toggleRouteVisibility: (index: number) => void

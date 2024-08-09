@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import Map from './Map/Routes.tsx';
+import Map from '../map/Routes.tsx';
 
 const Routes = (): React.JSX.Element => {
 
