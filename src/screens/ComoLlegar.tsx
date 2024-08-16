@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
-
-import Map from '../map/Map.tsx'
 import { SearchBar } from 'react-native-screens';
+import Map from '../map/Map.tsx'
+import themes from '../styles/themes.json'
 
 type Props = {
   latitude: number
@@ -12,7 +12,7 @@ const Home = ({latitude, longitude}: Props): React.JSX.Element => {
 
   return (
     <View style={{flex:1}}>
-      <View style={styles.searchBar}>
+      <View style={[styles.header, {backgroundColor: themes.light.card}]}>
         <SearchBar 
           placeholder='Buscar una dirección'
         >
@@ -25,9 +25,12 @@ const Home = ({latitude, longitude}: Props): React.JSX.Element => {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    height: '8%'
+  },
   searchBar: {
-    height: 80
-  }
+    
+  },
 })
 
 export default Home

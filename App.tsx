@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
-import Home from './src/screens/Home.tsx'
+import Home from './src/screens/ComoLlegar.tsx'
 import Routes from './src/screens/Routes.tsx'
 import Settings from './src/screens/Settings.tsx'
 import Location from './src/Permissions/Location.tsx'

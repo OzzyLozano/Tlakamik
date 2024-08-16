@@ -4,16 +4,19 @@ import { RouteProp, useRoute } from '@react-navigation/native'
 import themes from '../styles/themes.json'
 import map_styles from '../styles/map_styles.json'
 import MapView, { Polyline } from 'react-native-maps'
+import BackArrow from '../components/BackArrow'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
 type RootStackParamList = {
   VerRutas: undefined
   Ruta: { route: any }
 }
 
-type RutaRouteProp = RouteProp<RootStackParamList, 'Ruta'>
+type RutaProp = RouteProp<RootStackParamList, 'Ruta'>
 
 const Ruta = () => {
-  const route = useRoute<RutaRouteProp>()
+  const route = useRoute<RutaProp>()
   const { route: routeInfo } = route.params
 
   const initRegion = {
@@ -23,10 +26,14 @@ const Ruta = () => {
     longitudeDelta: .06,
   }
   const mapStyle = map_styles.default
+  const navigation = useNavigation()
 
   return (
     <View style={[styles.container, {backgroundColor: themes.light.background}]}>
       <View style={[styles.header, {backgroundColor: themes.light.card}]}>
+        <TouchableOpacity style={[styles.backbtn]} onPress={() => {navigation.goBack()}}>
+          <BackArrow />
+        </TouchableOpacity>
         <Text style={[styles.text, {color: themes.light.text}]}>{routeInfo?.info.nombre}</Text>
       </View>
       <View style={[styles.map]}>
@@ -60,12 +67,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
     height: '8%',
     width: '100%'
   },
   map: {
     height: '92%'
+  },
+  backbtn: {
+    marginRight: 10,
   },
 })
 
