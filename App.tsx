@@ -6,16 +6,14 @@ import themes from './src/styles/themes.json'
 import { NavigationContainer } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-
-import Home from './src/screens/ComoLlegar.tsx'
-import Routes from './src/screens/Routes.tsx'
+import { createStackNavigator } from '@react-navigation/stack';
+import ComoLlegar from './src/screens/ComoLlegar.tsx'
 import Settings from './src/screens/Settings.tsx'
 import Location from './src/Permissions/Location.tsx'
 import Help from './src/screens/Help.tsx'
 import VerRutas from './src/screens/VerRutas.tsx';
-import { createStackNavigator } from '@react-navigation/stack';
 import Ruta from './src/screens/Ruta.tsx';
-import prueba from './src/screens/prueba.tsx';
+import Home from './src/screens/Home.tsx';
 
 const App = (): React.JSX.Element => {
   const [loading, setLoading] = useState(true);
@@ -72,12 +70,12 @@ const App = (): React.JSX.Element => {
   const Drawer = createDrawerNavigator()
   const Stack = createStackNavigator()
   
-  const VerRutasStack = () => (
+  const TlakamikStack = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="VerRutas" component={VerRutas} />
+      <Stack.Screen name="Inicio" component={Home} />
       <Stack.Screen name="Ruta" component={Ruta} />
     </Stack.Navigator>
-  );
+  )
 
   try {
     <Location />
@@ -90,19 +88,18 @@ const App = (): React.JSX.Element => {
               initialRouteName='Tlakamik' 
               screenOptions={ drawerOption }>
                 <Drawer.Screen name='Tlakamik' options={headerOption}>
-                  {() => <Routes />}
+                  {() => <TlakamikStack />}
                 </Drawer.Screen>
                 <Drawer.Screen name='Cómo llegar' options={headerOption}>
-                  {() => <Home latitude={latitude} longitude={longitude} />}
+                  {() => <ComoLlegar latitude={latitude} longitude={longitude} />}
                 </Drawer.Screen>
-                <Drawer.Screen name='Ver Rutas' options={headerOption}>
+                {/* <Drawer.Screen name='Ver Rutas' options={headerOption}>
                   {() => <VerRutasStack />}
-                </Drawer.Screen>
-                <Drawer.Screen name='Configuracion' component={Settings} options={headerOption}>
-                </Drawer.Screen>
+                </Drawer.Screen> */}
+                {/* <Drawer.Screen name='Configuracion' component={Settings} options={headerOption}>
+                </Drawer.Screen> */}
                 <Drawer.Screen name='Ayuda' component={Help} options={headerOption}>
                 </Drawer.Screen>
-                {/* <Drawer.Screen name='prueba' component={prueba} options={headerOption} /> */}
               </Drawer.Navigator>
             </NavigationContainer>
         </GestureHandlerRootView>

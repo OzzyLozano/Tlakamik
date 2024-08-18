@@ -8,7 +8,7 @@ type Props = {
   longitude: number
 }
 
-const Home = ({latitude, longitude}: Props): React.JSX.Element => {
+const ComoLlegar = ({latitude, longitude}: Props): React.JSX.Element => {
 
   return (
     <View style={{flex:1}}>
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Home
+export default ComoLlegar

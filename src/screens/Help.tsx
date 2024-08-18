@@ -31,7 +31,7 @@ const Home = ({}: Props): React.JSX.Element => {
   return (
     <View style={styles.container}>
       <View style={[styles.card, {width: width*.9}]}>
-        <Text style={styles.text}>Contactarnos</Text>
+        <Text style={styles.text}>Contáctanos</Text>
       </View>
       <View style={[styles.form, {width: width*.9}]}>
         <View style={styles.formTitle}>

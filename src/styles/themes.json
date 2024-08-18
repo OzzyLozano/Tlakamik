@@ -5,15 +5,15 @@
     "card": "rgb(40, 40, 43)",
     "text": "rgb(255, 255, 255)",
     "border": "rgb(0, 0, 0)",
-    "notification": "rgb(255, 69, 58)"
+    "secondary": "rgb(255, 69, 58)"
   },
   "light": {
-    "primary": "#ffcd00",
-    "background": "#e6e6e6",
-    "card": "#f9f9f9",
-    "text": "rgb(0, 0, 0)",
-    "border": "#a0a0a0",
-    "notification": "rgb(255, 69, 58)"
+    "primary": "#F7E231",
+    "background": "#B2E6CE",
+    "card": "#F5F5F5",
+    "text": "#333",
+    "border": "#E01E1E",
+    "secondary": "#F5C578"
   },
   "active": {
     "primary": "",
@@ -21,6 +21,6 @@
     "card": "",
     "text": "",
     "border": "",
-    "notification": ""
+    "secondary": ""
   }
 }

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   arrowPart: {
     width: '100%',
     height: 2,
-    backgroundColor: '#E32636',
+    backgroundColor: themes.light.border,
   },
   arrowTop: {
     transform: [{ rotate: '45deg' }],
