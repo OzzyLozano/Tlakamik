@@ -59,7 +59,7 @@ const BottomSheet = ({ renderThis }: BottomSheetProps): React.JSX.Element => {
 const styles = StyleSheet.create({
   bottomSheet: {
     position: 'absolute',
-    width: '97%',
+    width: '95%',
     paddingVertical: 20,
     paddingHorizontal: 12,
     borderRadius: 40,

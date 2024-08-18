@@ -1,20 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import map_styles from '../styles/map_styles.json'
 import routes from '../map/routes/routes.json'
 import BottomSheet from '../map/BottomSheet'
-import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import themes from './../styles/themes.json'
 import { listarRutas } from '../funciones.tsx'
-
-type RootStackParamList = {
-  VerRutas: undefined;
-  Ruta: { route: any };
-};
-
-type VerRutasNavigationProp = StackNavigationProp<RootStackParamList, 'VerRutas'>;
 
 const Home = (): React.JSX.Element => {
   const initRegion = {
