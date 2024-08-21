@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import map_styles from '../styles/map_styles.json'
 import routes from '../map/routes/routes.json'
-import BottomSheet from '../map/BottomSheet'
+import { useBottomSheet } from '../map/BottomSheetContext'
 import themes from './../styles/themes.json'
 import { listarRutas } from '../funciones.tsx'
 
 const Home = (): React.JSX.Element => {
+  const { showBottomSheet } = useBottomSheet()
   const initRegion = {
     latitude: 25.85028,
     longitude: -97.50444,
@@ -17,6 +18,10 @@ const Home = (): React.JSX.Element => {
 
   // Establecer estilo del mapa
   const mapStyle = map_styles.default;
+
+  useEffect(() => {
+    showBottomSheet('Rutas Matamoros', listarRutas)
+  }, [showBottomSheet])
 
   const renderRoutes = () => {
     return Object.values(routes).map((route, index) => {
@@ -44,7 +49,6 @@ const Home = (): React.JSX.Element => {
         >
           {renderRoutes()}
         </MapView>
-        <BottomSheet renderThis={listarRutas} />
     </View>
   )
 }

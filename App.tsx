@@ -14,6 +14,8 @@ import Help from './src/screens/Help.tsx'
 import VerRutas from './src/screens/VerRutas.tsx';
 import Ruta from './src/screens/Ruta.tsx';
 import Home from './src/screens/Home.tsx';
+import BottomSheet from './src/map/BottomSheet.tsx';
+import { BottomSheetProvider } from './src/map/BottomSheetContext.tsx';
 
 const App = (): React.JSX.Element => {
   const [loading, setLoading] = useState(true);
@@ -36,7 +38,7 @@ const App = (): React.JSX.Element => {
               console.log(error);
               setLoading(false);
             },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+            { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
           )
           setLoading(false);
         }, 1000)
@@ -72,8 +74,12 @@ const App = (): React.JSX.Element => {
   
   const TlakamikStack = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Inicio" component={Home} />
-      <Stack.Screen name="Ruta" component={Ruta} />
+      <Stack.Screen name="Inicio">
+        {() => <Home />}
+      </Stack.Screen>
+      <Stack.Screen name="Ruta">
+        {() => <Ruta />}
+      </Stack.Screen>
     </Stack.Navigator>
   )
 
@@ -88,7 +94,11 @@ const App = (): React.JSX.Element => {
               initialRouteName='Tlakamik' 
               screenOptions={ drawerOption }>
                 <Drawer.Screen name='Tlakamik' options={headerOption}>
-                  {() => <TlakamikStack />}
+                  {() => 
+                    <BottomSheetProvider>
+                      <TlakamikStack />
+                    </BottomSheetProvider>
+                  }
                 </Drawer.Screen>
                 <Drawer.Screen name='Cómo llegar' options={headerOption}>
                   {() => <ComoLlegar latitude={latitude} longitude={longitude} />}

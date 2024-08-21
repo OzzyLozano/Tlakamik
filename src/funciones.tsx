@@ -1,36 +1,36 @@
-import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
-import { TouchableWithoutFeedback, Text, View, StyleSheet } from 'react-native';
-import routes from './map/routes/routes.json';
-import React from 'react';
-import themes from './styles/themes.json';
+import { StackNavigationProp } from '@react-navigation/stack'
+import { useNavigation } from '@react-navigation/native'
+import { TouchableWithoutFeedback, Text, View, StyleSheet } from 'react-native'
+import routes from './map/routes/routes.json'
+import React from 'react'
+import themes from './styles/themes.json'
 
 type RootStackParamList = {
-  VerRutas: undefined;
-  Ruta: { route: any };
-};
+  VerRutas: undefined
+  Ruta: { route: any }
+}
 
-type VerRutasNavigationProp = StackNavigationProp<RootStackParamList, 'VerRutas'>;
+type VerRutasNavigationProp = StackNavigationProp<RootStackParamList, 'VerRutas'>
 
-export const listarRutas = () => {
-  const navigation = useNavigation<VerRutasNavigationProp>();
+export const listarRutas = (): JSX.Element => {
+  const navigation = useNavigation<VerRutasNavigationProp>()
   return Object.values(routes).map((route, index) => {
-    const { info } = route;
-    if (!info) return null;
+    const { info } = route
+    if (!info) return null
     return (
       <React.Fragment key={index}>
         <TouchableWithoutFeedback onPress={() => {
-            navigation.navigate('Ruta', { route: route });
-          }}>
+          navigation.navigate('Ruta', { route: route })
+        } }>
           <View style={[styles.route]}>
             <Text style={[styles.name]}>{info.nombre}</Text>
             <View style={[styles.cross, { backgroundColor: info.color }]} />
           </View>
         </TouchableWithoutFeedback>
       </React.Fragment>
-    );
-  }).filter(route => route !== null) as JSX.Element[]; // Filtramos los valores nulos
-};
+    )
+  }).filter(route => route !== null) as unknown as JSX.Element // Filtramos los valores nulos
+}
 
 const styles = StyleSheet.create({
   route: {
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: themes.light.text
   },
-});
+})
