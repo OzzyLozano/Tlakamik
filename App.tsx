@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import themes from './src/styles/themes.json'
 import { NavigationContainer } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ComoLlegar from './src/screens/ComoLlegar.tsx'
 import Settings from './src/screens/Settings.tsx'
@@ -14,7 +14,6 @@ import Help from './src/screens/Help.tsx'
 import VerRutas from './src/screens/VerRutas.tsx';
 import Ruta from './src/screens/Ruta.tsx';
 import Home from './src/screens/Home.tsx';
-import BottomSheet from './src/map/BottomSheet.tsx';
 import { BottomSheetProvider } from './src/map/BottomSheetContext.tsx';
 
 const App = (): React.JSX.Element => {
@@ -52,8 +51,11 @@ const App = (): React.JSX.Element => {
   
   if (loading) {
     return (
-      <View style={[styles.container, styles.loadingContainer, {backgroundColor: themes.light.card}]}>
-        <ActivityIndicator size="large" color={themes.light.primary} />
+      <View style={[styles.container, {backgroundColor: '#00f5c5'}]}>
+        <Image source={require('./src/icon/ic_launcher.png')} style={[styles.logo]}/>
+        <View style={[styles.loadingContainer, {backgroundColor: themes.light.card}]}>
+          <ActivityIndicator style={{backgroundColor: '#00f5c5'}} size="large" color={themes.light.primary} />
+        </View>
       </View>
     )
   }
@@ -126,11 +128,18 @@ const App = (): React.JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loadingContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-});
+  logo: {
+    aspectRatio: 1,
+    height: undefined,
+    width: '69%',
+  },
+})
 
 export default App;

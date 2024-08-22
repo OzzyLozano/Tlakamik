@@ -4,7 +4,7 @@
       "nombre": "Copa - KLH",
       "NoRuta": "Ruta 11",
       "color": "#0097a7",
-      "horario": "5:00 - 20:00",
+      "horario": "5:00 - 23:00",
       "bidireccional": true,
       "show": true,
       "salidas": [
@@ -22,7 +22,10 @@
         {"salida": "16:00", "llegada": "17:00"},
         {"salida": "17:00", "llegada": "18:00"},
         {"salida": "18:00", "llegada": "19:00"},
-        {"salida": "19:00", "llegada": "20:00"}
+        {"salida": "19:00", "llegada": "20:00"},
+        {"salida": "20:00", "llegada": "21:00"},
+        {"salida": "21:00", "llegada": "22:00"},
+        {"salida": "22:00", "llegada": "23:00"}
       ]
     },
     "ruta": [
@@ -174,7 +177,7 @@
       "nombre": "Seccion 16",
       "NoRuta": "Ruta 1",
       "color": "#8B0000",
-      "horario": "5:00 - 20:00",
+      "horario": "5:00 - 23:30",
       "bidireccional": true,
       "show": true,
       "salidas": [
@@ -192,7 +195,10 @@
         {"salida": "16:00", "llegada": "17:00"},
         {"salida": "17:00", "llegada": "18:00"},
         {"salida": "18:00", "llegada": "19:00"},
-        {"salida": "19:00", "llegada": "20:00"}
+        {"salida": "19:00", "llegada": "20:00"},
+        {"salida": "20:00", "llegada": "21:00"},
+        {"salida": "21:00", "llegada": "22:00"},
+        {"salida": "22:00", "llegada": "23:30"}
       ]
     },
     "ruta": [
@@ -463,10 +469,10 @@
   },
   "tec": {
     "info": {
-      "nombre": "Tecnológico - Esperanza",
+      "nombre": "Tec - Esperanza",
       "NoRuta": "Ruta 2",
       "color": "#6495ED",
-      "horario": "5:00 - 20:00",
+      "horario": "5:00 - 21:00",
       "bidireccional": false,
       "show": true,
       "salidas": [
@@ -484,7 +490,8 @@
         {"salida": "16:00", "llegada": "17:00"},
         {"salida": "17:00", "llegada": "18:00"},
         {"salida": "18:00", "llegada": "19:00"},
-        {"salida": "19:00", "llegada": "20:00"}
+        {"salida": "19:00", "llegada": "20:00"},
+        {"salida": "20:00", "llegada": "21:00"}
       ]
     },
     "ruta": [
